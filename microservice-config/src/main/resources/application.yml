@@ -1,0 +1,18 @@
+server:
+  port: 8888  # Puerto en el que correrá el servidor de configuración
+
+spring:
+  profiles:
+    active: native  # Perfil activo para usar configuración local
+  application:
+    name: config-server  # Nombre de la aplicación
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: classpath:/configurations  # Ruta de búsqueda de configuraciones en el classpath
+
+eureka:
+  client:
+    register-with-eureka: false  # No se registra con Eureka, ya que es un servidor de configuración
+    fetch-registry: false  # No se necesita el registro, ya que no descubrirá otros servicios

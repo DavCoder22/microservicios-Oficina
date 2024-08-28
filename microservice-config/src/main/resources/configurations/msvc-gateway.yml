@@ -1,0 +1,29 @@
+server:
+  port: 8090  # Puerto en el que correrá el API Gateway
+
+spring:
+  application:
+    name: msvc-gateway  # Nombre del microservicio de gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true  # Habilita el uso del descubrimiento de servicios de Eureka
+      routes:
+        - id: empleado
+          uri: http://157c7f91750d7a4a1ab7838ec177d3ef15831dbf418ac42ed01348238e6ad08e:8081  # URI del microservicio de empleado, ajustar según sea necesario
+          predicates:
+            - Path=/empleado/**  # Ruta para el microservicio de empleado
+        - id: departamento
+          uri: http://157c7f91750d7a4a1ab7838ec177d3ef15831dbf418ac42ed01348238e6ad08e:8082  # URI del microservicio de departamento, ajustar según sea necesario
+          predicates:
+            - Path=/departamento/**  # Ruta para el microservicio de departamento
+        - id: recurso
+          uri: http://157c7f91750d7a4a1ab7838ec177d3ef15831dbf418ac42ed01348238e6ad08e:8083  # URI del microservicio de recurso, ajustar según sea necesario
+          predicates:
+            - Path=/recurso/**  # Ruta para el microservicio de recurso
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka  # URL del servidor Eureka para el descubrimiento de servicios

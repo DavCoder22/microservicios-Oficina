@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: msvc-empleado  # Nombre del microservicio de empleado
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://157c7f91750d7a4a1ab7838ec177d3ef15831dbf418ac42ed01348238e6ad08e:3307/oficina  # URL para conectar a la base de datos en Docker
+    username: root  # Usuario de la base de datos
+    password: 13673115  # Contraseña de la base de datos
+  jpa:
+    hibernate:
+      ddl-auto: update  
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect  # Dialecto para MySQL 8
+
+eureka:
+  instance:
+    hostname: localhost  # Hostname del servicio Eureka
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka  # URL del servidor Eureka para el descubrimiento de servicios
